@@ -43,25 +43,25 @@
   	<!-- Detail -->
 	<select id="getDetail" parameterType="BoardVO" resultType="NoticeVO">
 		select *FROM NOTICE
-		where boardno=#{boardno}
+		where boardNo=#{boardNo}
 	</select>  	
   	<!-- Update -->
 	<update id="setUpdate" parameterType="BoardVO">
 		update NOTICE
-		set boardtitle=#{boardtitle}
+		set boardTitle=#{boardTitle}
 			boardContents=#{boardContents}
-			where boardno=#{boardno}
+			where boardNo=#{boardNo}
 	</update>
   	<!-- 조회수 update -->
 	<update id="setHitUpdate" parameterType="BoardVO">
 		update notice
-		set boardhit=boardhit+1
-		where boardno=#{boardno}
+		set boardHit=boardHit+1
+		where boardNo=#{boardNo}
 	</update>
   	<!-- Delete -->
   	<delete id="setDelete" parameterType="BoardVO">
   		delete
   		FROM NOTICE
-  		where boardno=#{boardno}
+  		where boardNo=#{boardNo}
   	</delete>
   </mapper>

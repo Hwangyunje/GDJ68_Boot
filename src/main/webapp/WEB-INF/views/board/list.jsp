@@ -39,19 +39,38 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="vo">
-									<tr>
-										<td>${vo.boardNO}</td>
-										<td>${vo.boardTitle}</td>
-										<td>${vo.boardWriter}</td>
-										<td>${vo.boardDate}</td>
-										<td>${vo.boardHit}</td>
-									</tr>
+											<tr>
+												<td>${vo.boardNo}</td>
+												<td>${vo.boardTitle}</td>
+												<td>${vo.boardWriter}</td>
+												<td>${vo.boardDate}</td>
+												<td>${vo.boardHit}</td>
+												<td><a href="./update" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            
+                                        </span>
+                                        <span class="text">글수정</span>
+                                    </a></td>
+                                    <td><a href="/board/notice/delete?boardNo=${vo.boardNo}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            
+                                        </span>
+                                        <span class="text">글삭제</span>
+                                    </a></td>
+											</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
+				<!-- /.container-fluid -->
+				<a href="./add" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">글작성</span>
+                                    </a>
 				
 				
 			</div>
@@ -65,6 +84,6 @@
 	
 	
 	
-	<c:import url="./layout/footjs.jsp"></c:import>
+	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 </body>
 </html>
