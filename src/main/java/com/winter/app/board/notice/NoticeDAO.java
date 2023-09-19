@@ -7,4 +7,5 @@ import com.winter.app.board.BoardDAO;
 @Mapper
 public interface NoticeDAO extends BoardDAO {
 
+	
 }
