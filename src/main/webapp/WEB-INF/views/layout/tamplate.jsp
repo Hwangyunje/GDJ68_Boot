@@ -33,6 +33,6 @@
 	
 	
 	
-	<c:import url="./layout/footjs.jsp"></c:import>
+	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 </body>
 </html>

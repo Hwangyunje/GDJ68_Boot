@@ -5,63 +5,95 @@
   
   <mapper namespace="com.winter.app.board.notice.NoticeDAO">
   	<sql id="forPager">
- 		<choose>
- 			<when test="kind=='1'">
- 				boardtitle
- 			</when>
- 			<when test="kind=='2'">
- 				boardContents
- 			</when>
- 			<otherwise>
- 				boardwriter
- 			</otherwise>
- 		</choose>
- 		
+		<choose>
+			<when test="kind=='1'">
+				boardTitle 
+			</when>
+			<when test="kind=='2'">
+				boardContents 
+			</when>
+			<otherwise>
+				boardWriter 
+			</otherwise>
+		</choose>
+	
   	</sql>
   	
   	<select id="getCount" parameterType="Pager" resultType="Long">
   		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/>
-  		select count(boardno) FROM NOTICE;
+  		select COUNT(boardNo) from notice
   		where <include refid="forPager"></include>
   		LIKE #{pattern}
   	</select>
   
-  	<select id="getList" resultType="NoticeVO" parameterType="Pager">
-  		SELECT * FROM NOTICE
-		WHERE 
-				<include refid="forPager"></include>
-		 		LIKE concat('%',#{search},'%')
-		order by boardno DESC 
-		limit #{startRow},#{lastRow}
+  	<select id="getList" parameterType="Pager" resultType="NoticeVO" >
+  		select * from NOTICE 
+  		where 
+  				<include refid="forPager"></include>
+  		 		like concat('%', #{search}, '%')
+		order by boardNo desc 
+		limit #{startRow}, #{lastRow}
   	</select>
   	
-  	<insert id="add" parameterType="BoardVO">
-  		INSERT INTO NOTICE
-  		VALUES(NULL, #{boardTitle},#{boardWriter},#{boardContents},now(),0)
+ 	<insert id="add" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="boardNo">
+ 		
+  		INSERT INTO NOTICE  
+  		VALUES (null, #{boardTitle}, #{boardWriter}, #{boardContents}, now(), 0)
   	</insert>
   	
+  	<insert id="fileAdd" parameterType="NoticeFileVO">
+  		INSERT INTO NOTICEFILES
+  		VALUES (#{fileNo}, #{boardNo}, #{fileName}, #{oriName})
+  	</insert>
+
+  	
   	<!-- Detail -->
-	<select id="getDetail" parameterType="BoardVO" resultType="NoticeVO">
-		select *FROM NOTICE
-		where boardNo=#{boardNo}
-	</select>  	
+  	<select id="getDetail" parameterType="BoardVO" resultMap="getDetailResult">
+  		SELECT N.*, NF.*  
+  		FROM 
+  				NOTICE N
+  				LEFT OUTER JOIN
+  				NOTICEFILES NF
+  				ON N.BOARDNO=NF.BOARDNO
+  		WHERE N.BOARDNO=#{boardNo}
+  	</select>
+  	
+  	<resultMap type="NoticeVO" id="getDetailResult">
+  		<id column="BOARDNO" property="boardNo"/>
+  		<result column="BOARDTITLE"	 property="boardTitle"/>
+  		<result column="BOARDWRITER"	 property="boardWriter"/>
+  		<result column="BOARDCONTENTS"	 property="boardContents"/>
+  		<result column="BOARDDATE"	 property="boardDate"/>
+  		<result column="BOARDHIT"	 property="boardHit"/>
+  		<collection property="list" javaType="java.util.List" ofType="NoticeFileVO">
+  			<id column="FILENO" property="fileNo"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
   	<!-- Update -->
-	<update id="setUpdate" parameterType="BoardVO">
-		update NOTICE
-		set boardTitle=#{boardTitle}
-			boardContents=#{boardContents}
-			where boardNo=#{boardNo}
-	</update>
+  	<update id="setUpdate" parameterType="BoardVO">
+  		UPDATE NOTICE SET 
+  			BOARDTITLE=#{boardTitle},
+  			BOARDCONTENTS=#{boardContents}
+  		WHERE BOARDNO=#{boardNo}
+  	</update>
+  	
+  	
   	<!-- 조회수 update -->
-	<update id="setHitUpdate" parameterType="BoardVO">
-		update notice
-		set boardHit=boardHit+1
-		where boardNo=#{boardNo}
-	</update>
+  	<update id="setHitUpdate" parameterType="BoardVO">
+  		UPDATE NOTICE SET BOARDHIT=BOARDHIT+1 WHERE BOARDNO=#{boardNo}
+  	</update>
+  	
   	<!-- Delete -->
   	<delete id="setDelete" parameterType="BoardVO">
-  		delete
-  		FROM NOTICE
-  		where boardNo=#{boardNo}
+  		DELETE FROM NOTICE WHERE BOARDNO=#{boardNo}
   	</delete>
+  	
+  	<select id="getFileDetail" parameterType="FileVO" resultType="NoticeFileVO">
+  		SELECT *FROM NOTICEFILES WHERE FILENO=#{fileNo}
+  	</select>
+  	
   </mapper>

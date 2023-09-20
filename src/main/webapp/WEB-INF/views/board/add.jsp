@@ -22,7 +22,7 @@
 			<div class="container-fluid">
 				<!-- page실제내용 -->
 				<div class="row col-sm-12">
-				<form action="add" method="post">
+				<form action="add" method="post" enctype="multipart/form-data">
 					<div class="mb-3">
 				  <label for="boardTitle" class="form-label">Title</label>
 				  <input type="text" class="form-control" name="boardTitle" id="boardTitle" placeholder="제목을 입력하세요">
@@ -34,6 +34,12 @@
 				<div class="mb-3">
 				  <label for="boardContents" class="form-label">Contents</label>
 				  <textarea class="form-control" id="boardContents" name="boardContents" rows="3"></textarea>
+				</div>
+				<div class="mb-3">
+				  <input type="file" class="form-control"  name="files">
+				</div>
+				<div class="mb-3">
+				  <input type="file" class="form-control"  name="files">
 				</div>
 				
 				<button class="btn btn-danger">add</button>
@@ -52,6 +58,6 @@
 	
 	
 	
-	<c:import url="./layout/footjs.jsp"></c:import>
+	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 </body>
 </html>

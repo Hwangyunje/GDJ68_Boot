@@ -21,27 +21,20 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 			<div class="container-fluid">
 				<!-- page실제내용 -->
-								<div class="row col-sm-12">
-				<form action="update" method="post">
-				<input type="hidden" name="boardNo" value="boardNO">
-					<div class="mb-3">
-				  <label for="boardTitle" class="form-label">Title</label>
-				  <input type="text" class="form-control" name="boardTitle" id="boardTitle" value="${vo.boardTitle}">
-				</div>
-					<div class="mb-3">
-				  <label for="boardWriter" class="form-label">Writer</label>
-				  <input type="text" class="form-control" name="boardWriter" id="boardWriter" value="${vo.boardWriter}">
-				</div>
-				<div class="mb-3">
-				  <label for="boardContents" class="form-label">Contents</label>
-				  <textarea class="form-control" id="boardContents" name="boardContents" rows="3" value="${vo.boardContents}"></textarea>
+				<div class="row">
+					<div>${boardVO.boardTitle}</div>
+					<div>${boardVO.boardWriter}</div>
+					<div>${boardVO.boardContents}</div>
+					
 				</div>
 				
-				<button type="submit" class="btn btn-danger">update</button>
-				
-				
-				</form>
+				<div class="row">
+					<c:forEach items="${boardVO.list}" var="f">
+						<img alt="" src="../files/${board}/${f.fileName}">
+						<a href="./fileDown?fileNo=${f.fileNo}">${f.oriName}</a>
+					</c:forEach>
 				</div>
+				
 			</div>
 			</div>
 			<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

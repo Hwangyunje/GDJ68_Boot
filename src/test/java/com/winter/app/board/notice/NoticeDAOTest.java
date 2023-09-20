@@ -15,9 +15,9 @@ import com.winter.app.commons.Pager;
 class NoticeDAOTest {
 	@Autowired
 	private NoticeDAO noticeDAO;
-	//@Test
+	@Test
 	void addTest()throws Exception{
-		for(int i=0;i<100;i++) {
+		for(int i=0;i<150;i++) {
 		BoardVO boardVO= new BoardVO();
 		boardVO.setBoardTitle("title");
 		boardVO.setBoardWriter("Writer");
