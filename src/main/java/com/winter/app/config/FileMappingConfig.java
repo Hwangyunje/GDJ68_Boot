@@ -21,7 +21,7 @@ public class FileMappingConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		//요청url
 		registry.addResourceHandler(urlPath);
-		//local file 위치
+		//local file 위치 file:///D:GDJ68/upload/
 //		registry.addResourceLocations(filePath);
 		
 	}
