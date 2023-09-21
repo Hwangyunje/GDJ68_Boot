@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!-- Topbar -->
+ 
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -23,6 +25,23 @@
                     </form>
 
                     <!-- Topbar Navbar -->
+                    <c:if test="${empty member}">
+                    	<ul class="navbar-nav ml-auto">
+                    		<li class="nav-item">
+                    			<a class="nav-link" href="/member/join" id="join" role="button">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                    	</li>
+                    	
+                    	<li class="nav-item">
+                    			<a class="nav-link" href="/member/login" id="join" role="button">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                    	</li>
+                   	</ul>
+                   </c:if>
+                    
+                    <c:if test="${not empty member}">
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -174,7 +193,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -200,6 +219,6 @@
                         </li>
 
                     </ul>
-
+					</c:if>
                 </nav>
                 <!-- End of Topbar -->
