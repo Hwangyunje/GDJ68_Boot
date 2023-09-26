@@ -28,7 +28,7 @@ public class IndexController {
 		
 		log.info("=====================GetName : {}=======================",b.getName());
 		
-		log.info("=====================Principa : {}=======================",b.getCredentials());
+		log.info("=====================Principa : {}=======================",b.getPrincipal());
 		
 		log.info("=====================Object : {}=======================",b.getAuthorities());
 		
