@@ -6,7 +6,7 @@
   <mapper namespace="com.winter.app.member.MemberDAO">
   	<insert id="setJoin" parameterType="MemberVO">
   		INSERT INTO MEMBER
-  		VALUES(#{username}, #{password}, #{name}, #{email}, #{birth}, now())
+  		VALUES(#{username}, #{password}, #{name}, #{email}, #{birth}, now(),#{enabled})
   	</insert>
   	
   	<insert id="setMemberRole" parameterType="java.util.Map">
@@ -35,6 +35,7 @@
   		<result column="EMAIL" property="email"/>
   		<result column="BIRTH" property="birth"/>
   		<result column="JOINDATE" property="joinDate"/>
+  		<result column="ENABLED" property="enabled"/>
   		
   		<collection property="roleVOs" javaType="List" ofType="RoleVO">
   			<id column="ROLENUM" property="roleNum"/>

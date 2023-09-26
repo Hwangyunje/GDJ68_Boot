@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,12 @@
 			 <div id="content">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 			<div class="container-fluid">
+				<div>
+					<h3>${param.message}</h3>
+					<spring:message code="${param.message}" var="msg"></spring:message>
+					<h3>${msg}</h3>
+				</div>
+			
     	 			<form:form modelAttribute="memberVO" method="post">
     	 			  <div class="form-group">
     	 			  	<form:label path="username">Username</form:label>
@@ -50,5 +57,13 @@
     
 
 <c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+<script type="text/javascript">
+	let m = '${msg}';
+	
+	if(m != ''){
+		alert('${m}');
+	}
+
+</script>
 </body>
 </html>
