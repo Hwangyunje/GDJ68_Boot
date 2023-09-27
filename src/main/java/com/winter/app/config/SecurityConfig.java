@@ -20,10 +20,7 @@ public class SecurityConfig {
 	@Autowired
 	private MemberService memberService;
 	
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 	
 	
 	@Bean
@@ -75,7 +72,10 @@ public class SecurityConfig {
 				.userDetailsService(memberService)
 				.authenticationSuccessHandler(handler)
 				.and()
-				.sessionManagement()
+			.oauth2Login()
+				.userInfoEndpoint()
+				.userService(memberService)
+				.and()
 			;
 		
 		return httpSecurity.build();
