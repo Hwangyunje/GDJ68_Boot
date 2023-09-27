@@ -13,7 +13,6 @@
 			<typeAlias type="com.winter.app.member.MemberVO" alias="MemberVO"/>	
 			<typeAlias type="com.winter.app.member.MemberDAO" alias="MemberDAO"/>
 			<typeAlias type="com.winter.app.member.RoleVO" alias="RoleVO"/>
-			
 			<typeAlias type="java.util.List" alias="List"/> 	
 	 	</typeAliases>
 	 

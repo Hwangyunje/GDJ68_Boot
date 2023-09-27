@@ -23,11 +23,14 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 			<div class="container-fluid">
 				<!-- page실제내용 -->
-				<h1><sec:authentication property="name"></sec:authentication></h1>
-				<h1><sec:authentication property="email"></sec:authentication></h1>
-				<h1><sec:authentication property="birth"></sec:authentication></h1>
-				<h1><sec:authentication property="joinDate"></sec:authentication></h1>
-				<h1><sec:authentication property="username"></sec:authentication></h1>
+				<div>
+						<sec:authentication property="principal" var="memberVO"/>
+					<h3>
+						${memberVO.username}
+					</h3>
+					<h3><sec:authentication property="principal.email"/></h3>
+					<h3>${memberVO.birth}</h3>
+				</div>
 			</div>
 			</div>
 			<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

@@ -39,7 +39,13 @@
 					    <form:label path="password">Password</form:label>
 					    <form:password path="password" cssClass="form-control" id="password"/>
 					  	<form:errors path="password"></form:errors>
-					  </div>    	 			
+					  </div>   
+					   <div class="form-group">
+					   <label for="remember">RememberMe</label>
+					    <input type="checkbox" name="remember-me" class="form-contorl"/>
+					  </div>   
+					  
+					   	 			
     	 			  <button type="submit" class="btn btn-primary">Submit</button>
     	 			
     	 			</form:form>
@@ -64,6 +70,7 @@
 		alert('${m}');
 	}
 
+	history.replaceState({}, null, location.pathname);
 </script>
 </body>
 </html>

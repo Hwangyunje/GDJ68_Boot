@@ -51,18 +51,18 @@ public class NoticeService implements BoardService {
 		log.info("boardNo : {}",boardVO.getBoardNo());
 		log.info("================================================");
 		
-		for(MultipartFile multipartFile:files) {
-			
-			if(multipartFile.isEmpty()) {
-				continue;
-			}
-			NoticeFileVO fileVO= new NoticeFileVO();
-			String filename=fileMnager.save(this.uploadPath+this.boardName, multipartFile);
-			fileVO.setBoardNo(boardVO.getBoardNo());
-			fileVO.setFileName(filename);
-			fileVO.setOriName(multipartFile.getOriginalFilename());
-			result = noticeDAO.fileAdd(fileVO);
-		}
+//		for(MultipartFile multipartFile:files) {
+//			
+//			if(multipartFile.isEmpty()) {
+//				continue;
+//			}
+//			NoticeFileVO fileVO= new NoticeFileVO();
+//			String filename=fileMnager.save(this.uploadPath+this.boardName, multipartFile);
+//			fileVO.setBoardNo(boardVO.getBoardNo());
+//			fileVO.setFileName(filename);
+//			fileVO.setOriName(multipartFile.getOriginalFilename());
+//			result = noticeDAO.fileAdd(fileVO);
+//		}
 		
 		return result;//
 	}

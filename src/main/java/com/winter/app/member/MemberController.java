@@ -1,11 +1,13 @@
 package com.winter.app.member;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -32,11 +34,13 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("info")
-	public void getInfo() throws Exception{}
+	public void getInfo() throws Exception{
+	//DB에서 사용자정보를 조회해서 jsp로보냄
+	}
 	
 	@GetMapping("update")
-	public void setUpdate(HttpSession session, Model model)throws Exception{
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+	public void setUpdate(@AuthenticationPrincipal MemberVO memberVO, Model model)throws Exception{
+		//MemberVO memberVO = (MemberVO)pricipal;
 		//memberVO = memberService.getLogin(memberVO);
 		
 		MemberInfoVO memberInfoVO = new MemberInfoVO();
@@ -50,9 +54,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("update")
-	public void setUpdate(@Valid MemberInfoVO memberInfoVO, BindingResult bindingResult)throws Exception{
+	public String setUpdate(@Valid MemberInfoVO memberInfoVO, BindingResult bindingResult)throws Exception{
+		Object obj=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		MemberVO memberVO = (MemberVO)obj;
+		memberVO.setEmail("UpdateEmail@naver.com");
 		
-	
+		return "redirect:/";
+		
 	}
 	
 	@GetMapping("logout")
