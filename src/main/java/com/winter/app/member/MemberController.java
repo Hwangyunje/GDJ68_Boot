@@ -34,6 +34,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("kakaoLogout")
+	public String kakaoLogout() {
+		log.info("카카오로그아웃controle");
+		return "redirect:../";
+	}
+	
 	@GetMapping("info")
 	public void getInfo()throws Exception{
 		//DB에서 사용자 정보를 조회 해서 JSP로 보냄
