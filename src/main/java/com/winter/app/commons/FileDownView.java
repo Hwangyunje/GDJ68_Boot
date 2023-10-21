@@ -48,7 +48,7 @@ public class FileDownView extends AbstractView{
 		
 		//Header 설정
 		response.setHeader("Content-Disposition", "attachment;filename=\""+downName+"\"");
-		response.setHeader("content-Transfer-Encoding", "binary");
+		response.setHeader("Content-Transfer-Encoding", "binary");
 		
 		//HDD에서 파일 읽어서
 		FileInputStream fi = new FileInputStream(file);
